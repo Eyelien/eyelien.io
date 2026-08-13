@@ -145,109 +145,127 @@ button {
 
 
 /* =========================
-   HERO
+   HERO PROFILE IMAGE
 ========================= */
 
-.hero {
+.hero-image {
+    position: absolute;
 
-    min-height: 520px;
+    right: 20px;
+    bottom: 0;
+
+    width: 48%;
+    height: 100%;
 
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
 
-    align-items: center;
-
-    position: relative;
-
-    padding: 50px 55px;
+    z-index: 2;
 
     overflow: hidden;
 }
 
 
-/* Blue glow */
+/* Blue ambient glow behind the photo */
 
-.hero::after {
+.hero-image::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: 60px;
+    bottom: 20px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 174, 255, 0.35) 0%,
+            rgba(0, 120, 255, 0.15) 35%,
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    z-index: 0;
+}
+
+
+/* Photo */
+
+.hero-image img {
+
+    position: relative;
+
+    width: 500px;
+    max-width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center top;
+
+    z-index: 2;
+
+    /* Fade the bottom into the website */
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            black 65%,
+            rgba(0,0,0,0.85) 78%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black 65%,
+            rgba(0,0,0,0.85) 78%,
+            transparent 100%
+        );
+
+    /* Blend the edges */
+
+    mix-blend-mode: normal;
+
+    filter:
+        drop-shadow(0 0 25px rgba(0, 174, 255, 0.12));
+}
+
+
+/* Soft blue glow around the person */
+
+.hero-image::after {
 
     content: "";
 
     position: absolute;
 
-    width: 500px;
+    width: 330px;
+    height: 330px;
 
-    height: 500px;
+    right: 120px;
+    top: 150px;
 
-    right: -150px;
+    border-radius: 50%;
 
-    bottom: -250px;
+    border: 2px solid rgba(0, 174, 255, 0.35);
 
-    background: #00aeff;
+    box-shadow:
+        0 0 20px rgba(0, 174, 255, 0.2),
+        inset 0 0 20px rgba(0, 174, 255, 0.08);
 
-    filter: blur(150px);
-
-    opacity: 0.18;
+    z-index: 1;
 
     pointer-events: none;
 }
-
-
-.hero-content {
-
-    width: 55%;
-
-    position: relative;
-
-    z-index: 5;
-}
-
-.hello {
-
-    color: #00aeff;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 5px;
-}
-
-.hero h1 {
-
-    font-size: clamp(42px, 5vw, 65px);
-
-    line-height: 1.1;
-
-    font-weight: 700;
-
-    margin-bottom: 4px;
-}
-
-.hero h2 {
-
-    font-size: clamp(20px, 2.5vw, 27px);
-
-    color: #ffffff;
-
-    margin-bottom: 20px;
-}
-
-.hero h2 span {
-
-    color: #00aeff;
-}
-
-.description {
-
-    max-width: 500px;
-
-    color: #aebdc7;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
 
 /* =========================
    BUTTONS
@@ -970,7 +988,7 @@ footer p {
 
     .hero {
 
-        min-height: 700px;
+        min-height: 560px;
 
         padding: 50px 25px;
 
@@ -991,19 +1009,13 @@ footer p {
         font-size: 45px;
     }
 
-    .hero-image {
-
-        width: 100%;
-
-        height: 430px;
-
-        right: 0;
-
-        bottom: 0;
-
-        opacity: 0.55;
-    }
-
+   .hero-image {
+    width: 100%;
+    height: 450px;
+    right: 0;
+    bottom: 0;
+    opacity: 0.7;
+}
     .hero-image img {
 
         max-width: 400px;
@@ -1078,3 +1090,5 @@ footer p {
 
     transform: translateY(0);
 }
+
+
