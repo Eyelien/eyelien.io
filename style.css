@@ -317,7 +317,6 @@ button {
     height: 100%;
 
     display: flex;
-
     align-items: flex-end;
     justify-content: center;
 
@@ -329,9 +328,7 @@ button {
 }
 
 
-/* =========================
-   BLUE AMBIENT GLOW
-========================= */
+/* Blue glow behind the person */
 
 .hero-image::before {
     content: "";
@@ -349,26 +346,26 @@ button {
     background:
         radial-gradient(
             circle,
-            rgba(0, 174, 255, 0.32) 0%,
-            rgba(0, 130, 255, 0.18) 35%,
-            rgba(0, 80, 150, 0.08) 55%,
+            rgba(0, 174, 255, 0.35) 0%,
+            rgba(0, 140, 255, 0.20) 35%,
+            rgba(0, 100, 200, 0.08) 55%,
             transparent 72%
         );
 
-    filter: blur(25px);
+    filter: blur(35px);
 
     z-index: 0;
 }
 
 
 /* =========================
-   PROFILE IMAGE
+   PROFILE PHOTO
 ========================= */
 
 .hero-image img {
     position: relative;
 
-    width: 520px;
+    width: 540px;
     max-width: 100%;
 
     height: 100%;
@@ -380,34 +377,114 @@ button {
     z-index: 2;
 
     /*
-       Fade the bottom of the image
-       into the website background
+       IMPORTANT:
+       Fade the rectangular photo
+       into the website background.
     */
 
     -webkit-mask-image:
-        linear-gradient(
-            to bottom,
-            black 50%,
-            black 72%,
-            rgba(0, 0, 0, 0.75) 84%,
+        radial-gradient(
+            ellipse 72% 88% at 50% 45%,
+            black 48%,
+            rgba(0, 0, 0, 0.85) 62%,
+            rgba(0, 0, 0, 0.35) 78%,
             transparent 100%
         );
 
     mask-image:
-        linear-gradient(
-            to bottom,
-            black 50%,
-            black 72%,
-            rgba(0, 0, 0, 0.75) 84%,
+        radial-gradient(
+            ellipse 72% 88% at 50% 45%,
+            black 48%,
+            rgba(0, 0, 0, 0.85) 62%,
+            rgba(0, 0, 0, 0.35) 78%,
             transparent 100%
         );
 
     filter:
         drop-shadow(
-            0 0 25px rgba(0, 174, 255, 0.15)
+            0 0 25px rgba(0, 174, 255, 0.18)
         );
 }
 
+
+/* Extra soft blue atmosphere */
+
+.hero-image::after {
+    content: "";
+
+    position: absolute;
+
+    width: 380px;
+    height: 380px;
+
+    right: 100px;
+    bottom: 40px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 174, 255, 0.12),
+            transparent 70%
+        );
+
+    filter: blur(25px);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MOBILE IMAGE
+========================= */
+
+@media (max-width: 700px) {
+
+    .hero-image {
+        width: 100%;
+
+        height: 440px;
+
+        right: 0;
+        bottom: 0;
+
+        opacity: 0.75;
+    }
+
+    .hero-image img {
+        width: 420px;
+
+        max-width: 100%;
+
+        -webkit-mask-image:
+            radial-gradient(
+                ellipse 75% 85% at 50% 45%,
+                black 45%,
+                rgba(0, 0, 0, 0.7) 65%,
+                transparent 100%
+            );
+
+        mask-image:
+            radial-gradient(
+                ellipse 75% 85% at 50% 45%,
+                black 45%,
+                rgba(0, 0, 0, 0.7) 65%,
+                transparent 100%
+            );
+    }
+
+    .hero-image::before {
+        width: 400px;
+        height: 400px;
+
+        right: 50%;
+
+        transform: translateX(50%);
+    }
+}
 
 /* =========================
    SECTIONS
